@@ -15,14 +15,17 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`)
+      .get(
+        `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2023-08-27&end_date=2023-08-31`
+      )
       .then((response) => {
-        setapodData(response.data);
+        setapodData(response.data[0]);
       })
       .catch((error) => {
         console.error("APOD DATA ALINAMADI", error);
       });
   }, [date]);
+
   return (
     <>
       <Header date={date} changeHandler={changeHandler} />
